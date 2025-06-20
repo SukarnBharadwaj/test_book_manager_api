@@ -84,6 +84,11 @@ Visit: [http://localhost:5000](http://localhost:5000)
 | PUT    | `/books/<id>`  | Update a specific book   |
 | DELETE | `/books/<id>`  | Delete a specific book   |
 
+## 📸 Screenshot
+
+![App Screenshot](assets/main_page.png)
+
+
 ## 🧠 Future Improvements
 
 - Add user authentication
