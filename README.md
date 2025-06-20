@@ -88,6 +88,8 @@ Visit: [http://localhost:5000](http://localhost:5000)
 
 ![App Screenshot](assets/main_page.png)
 
+![App Screenshot](assets/book_api.png)
+
 
 ## 🧠 Future Improvements
 
