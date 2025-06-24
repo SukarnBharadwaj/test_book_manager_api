@@ -1,3 +1,7 @@
-Flask
-Flask-Cors
-mysql-connector-python
+Flask==2.3.2
+Flask-Cors==3.0.10
+mysql-connector-python==8.3.0
+
+# Testing tools
+pytest==8.2.1
+pytest-cov==5.0.0

@@ -1,101 +1,138 @@
+
 # 📚 Book Manager API
 
-A simple full-stack Book Manager application built with **Flask**, **MySQL**, and **vanilla JavaScript**.
+A simple Flask-based REST API to manage a collection of books using CRUD operations (Create, Read, Update, Delete). This project uses a MySQL database and includes testing with `pytest` and `pytest-cov`.
 
-## 🚀 Features
+---
 
-- View a list of all saved books
-- Add new books via a form
-- Update existing books with a dedicated form
-- Delete books with a single click
-- Search for books by title, author, or genre
-- Toggle between light/dark mode using a button
-- Animated toast notifications for user actions
+## 🛠 Tech Stack
 
-## 🛠️ Technologies Used
+- Python 3
+- Flask
+- MySQL
+- SQL Connector (mysql-connector-python)
+- pytest
+- pytest-cov
+- Flask-CORS
 
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Python, Flask, Flask-CORS
-- **Database**: MySQL
-- **Other**: LocalStorage for dark mode persistence
+---
 
-## 📁 Project Structure
+## 🚀 Getting Started
 
-```
-book-manager-api/
-├── app.py
-├── db_config.py
-├── requirements.txt
-├── templates/
-│   └── index.html
-├── static/
-│   ├── style.css
-│   └── script.js
-```
-
-## ⚙️ Setup Instructions
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/yourusername/book-manager-api.git
-cd book-manager-api
-```
-
-### 2. Install dependencies
+### 📦 Install Requirements
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Set up MySQL
+> If requirements.txt is missing, manually install:
 
-Create a MySQL database and table:
+```bash
+pip install Flask mysql-connector-python pytest pytest-cov flask-cors
+```
+
+---
+
+## ⚙️ Setup Environment
+
+Create a `.env` file or export the following environment variables:
+
+```bash
+export DB_HOST=localhost
+export DB_USER=root
+export DB_PASSWORD=your_password
+export DB_NAME=bookdb
+```
+
+Set up your MySQL test database:
 
 ```sql
 CREATE DATABASE bookdb;
-USE bookdb;
-CREATE TABLE books (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255),
-    author VARCHAR(255),
-    genre VARCHAR(100),
-    year_published INT
-);
+CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'testpass';
+GRANT ALL PRIVILEGES ON bookdb.* TO 'testuser'@'localhost';
+FLUSH PRIVILEGES;
 ```
 
-> Update `db_config.py` with your MySQL credentials.
+---
 
-### 4. Run the Flask app
+## ▶️ Running the App
 
 ```bash
 python app.py
 ```
 
-Visit: [http://localhost:5000](http://localhost:5000)
+This will start the Flask development server at `http://127.0.0.1:5000/`.
 
-## 🌐 API Endpoints
+---
 
-| Method | Endpoint       | Description              |
-|--------|----------------|--------------------------|
-| GET    | `/books`       | Get all books            |
-| GET    | `/books/<id>`  | Get a specific book      |
-| POST   | `/books`       | Add a new book           |
-| PUT    | `/books/<id>`  | Update a specific book   |
-| DELETE | `/books/<id>`  | Delete a specific book   |
+## 📬 API Endpoints
 
-## 📸 Screenshot
+| Method | Route             | Description               |
+|--------|-------------------|---------------------------|
+| GET    | `/books`          | Get all books             |
+| GET    | `/books/<id>`     | Get a specific book       |
+| POST   | `/books`          | Add a new book            |
+| PUT    | `/books/<id>`     | Update a book             |
+| DELETE | `/books/<id>`     | Delete a book             |
 
-![App Screenshot](assets/main_page.png)
+---
 
-![App Screenshot](assets/book_api.png)
+## 🧪 Testing
 
+### 📌 Run all tests with coverage:
 
-## 🧠 Future Improvements
+```bash
+pytest --cov=app tests/
+```
 
-- Add user authentication
-- Pagination support
-- Switch to SQLAlchemy ORM
-- Export books to CSV/PDF
+### 📊 View HTML coverage report:
+
+```bash
+pytest --cov=app --cov-report=html
+open htmlcov/index.html  # or start htmlcov/index.html on Windows
+```
+
+---
+
+## ✅ Test Status
+
+| Test Type         | Status  | Notes                                                                 |
+|-------------------|---------|-----------------------------------------------------------------------|
+| Unit Tests        | ✅ Passed | Validated model structure and logic                                  |
+| API Tests         | ✅ Passed | Tested CRUD endpoints using Flask test client                        |
+| Integration Tests | ⚠️ Failed | Some tests failed due to MySQL authentication error on this machine  |
+
+> A few additional tests (e.g., `test_delete_book`, `test_add_and_get_book`) are written, but they are not passing **on this device** due to MySQL access denied errors (Error 1045). These are expected to run successfully on a correctly configured machine.
+
+---
+
+## 📸 Coverage Screenshot
+
+![Coverage Screenshot](screenshot.png)
+
+---
+
+## 📂 Project Structure
+
+```
+book-manager-api/
+├── app.py                  # Flask app with routes
+├── db_config.py            # DB connection logic
+├── templates/
+│   └── index.html          # Homepage
+├── tests/
+│   ├── conftest.py         # Pytest fixtures
+│   ├── test_api_endpoints.py
+│   ├── test_integration_books.py
+│   └── test_unit_model.py
+```
+
+---
+
+## 🤝 Contributions
+
+Contributions and suggestions are welcome! Please open an issue or submit a pull request.
+
+---
 
 
